@@ -1,0 +1,7 @@
+{
+  "lr": 2.2e-4,
+  "weight_decay": 1e-4,
+  "epochs": 100,
+  "warmup_epochs": 10,
+  "batch_size": 512
+}

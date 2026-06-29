@@ -1,0 +1,9 @@
+{
+    "task_type": "regression",
+    "num_outputs": 1,
+    "lr": 8e-5,
+    "weight_decay": 1e-4,
+    "epochs": 100,
+    "warmup_epochs": 10,
+    "batch_size": 64
+}
