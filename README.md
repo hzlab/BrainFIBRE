@@ -3,9 +3,11 @@
 Official repository of the paper  
 **BrainFIBRE: A Foundation Model via Information Decomposition for Brain Microstructure (*ECCV* 2026)**
 
+[![Paper](https://img.shields.io/badge/Paper-Arxiv-red)](https://arxiv.org/pdf/2607.00573)
+
 ## Overview
 
-<!-- Overview figure will be added here -->
+![BrainFIBRE Overview](assets/BrainFIBRE_fig2.png)
 
 ## 🏗️ Project Architecture
 
@@ -67,25 +69,23 @@ Place the downloaded checkpoints in:
 
 ### Training Pipeline
 
-#### Self-supervised PID Pretraining
+#### Stage 1: Self-supervised PID Pretraining
 
 ```bash
-# Set your paths and run pretraining with torchrun (multi-GPU)
+# Run pretraining with torchrun (multi-GPU)
 bash scripts/run_pretrain.sh
 ```
+*Note: Our pretraining was performed on 8 H200 (140G) GPUs.*
 
-#### Downstream Task Finetuning
-
-Fine-tune the pretrained model on downstream prediction tasks. The fine-tuning script supports both classification and regression tasks across multiple cohorts.
+#### Stage 2: Downstream Task Finetuning
 
 ```bash
-# Usage: run_finetune.sh <dataset> <task> <splits> <tuning_mode> [pretrained_path] [params_json] [resume_path]
-
-# Example: full fine-tuning on HCP age prediction (split 1)
+# Run fine-tuning on specified dataset and task (e.g., HCP-Aging age prediction, data split 1)
 bash scripts/run_finetune.sh HCP age 1 full checkpoints/pretrain/ckpt_latest.pt hcp_finetune.json
-```
 
-Supported tuning modes: `full` (fine-tune from pretrained weights), `tfs` (train from scratch).
+# Usage: run_finetune.sh <dataset> <task> <splits> <tuning_mode> [pretrained_path] [params_json] [resume_path]
+# Note: tuning_mode can be set to 'full' (fine-tune from pretrained) or 'tfs' (train from scratch)
+```
 
 ## Citation
 
@@ -94,6 +94,7 @@ If you find this repository useful, please cite our *ECCV* 2026 paper:
 ```bibtex
 @inproceedings{brainfibre2026,
   title={BrainFIBRE: A Foundation Model via Information Decomposition for Brain Microstructure},
+  author={Dong, Zijian and Lin, Yi and Fang, Ji and Zhou, Jianxiong and Ng, Kwun Kei and Zhou, Juan Helen},
   booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
   year={2026}
 }
@@ -101,4 +102,4 @@ If you find this repository useful, please cite our *ECCV* 2026 paper:
 
 ---
 
-*BrainFIBRE - Advancing Brain Microstructure Analysis with AI*
+*BrainFIBRE - First Brain Microstructure Foundation Model*
